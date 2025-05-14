@@ -3,67 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gilberto Gil - Projeto Escolar</title>
+    <title>Gilberto Gil | Legado Musical e Cultural</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Nunito Sans"', 'sans-serif'],
-                        display: ['"Nunito"', 'sans-serif']
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-slow': 'pulse 5s infinite'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --dark: #1f2937;
+            --darker: #111827;
+        }
+        
         body {
-            font-family: 'Nunito Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
+            scroll-behavior: smooth;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
         
-        .font-small {
-            font-size: 0.9rem;
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(245,158,11,0.8) 0%, rgba(217,119,6,0.9) 100%);
         }
-        .font-medium {
-            font-size: 1rem;
+        
+        .text-stroke {
+            -webkit-text-stroke: 1px var(--primary);
+            color: transparent;
         }
-        .font-large {
-            font-size: 1.1rem;
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        .font-xlarge {
-            font-size: 1.2rem;
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+        
+        .album-cover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .album-cover:hover {
+            transform: translateY(-10px) scale(1.03);
+        }
+        
+        .music-player {
+            background: linear-gradient(135deg, rgba(31,41,55,0.9) 0%, rgba(17,24,39,0.95) 100%);
+            backdrop-filter: blur(10px);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            width: 30%;
         }
         
         .dark-mode {
-            background-color: #111827;
+            background-color: var(--darker);
             color: #f3f4f6;
         }
         
         .dark-mode .bg-white {
-            background-color: #1f2937 !important;
+            background-color: var(--dark) !important;
             color: #f3f4f6 !important;
         }
         
@@ -85,30 +118,11 @@
         }
         
         .dark-mode .bg-yellow-600 {
-            background-color: #92400e !important;
+            background-color: var(--primary-dark) !important;
         }
         
         .dark-mode .text-yellow-600 {
-            color: #f59e0b !important;
-        }
-        
-        .gallery-item {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .hero-image {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://gilbertogil.com.br/wp-content/uploads/2024/03/gilbertogil.com.br-bw-20240322-lollapalooza-gilbertogil-1445-1-1-960x1200.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 80vh;
-            animation: fade-in 1s ease-in-out;
+            color: var(--primary) !important;
         }
         
         .nav-link {
@@ -119,11 +133,12 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: -2px;
+            height: 3px;
+            bottom: -5px;
             left: 0;
-            background-color: #f59e0b;
+            background-color: var(--primary);
             transition: width 0.3s ease;
+            border-radius: 3px;
         }
         
         .nav-link:hover::after {
@@ -133,19 +148,46 @@
         .btn-primary {
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(30deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+            opacity: 1;
         }
         
         .social-icon {
             transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
         
         .social-icon:hover {
-            transform: scale(1.2);
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(245,158,11,0.1);
         }
         
         .floating {
@@ -163,28 +205,193 @@
             transform: translateY(0);
         }
         
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px !important;
+            height: 12px !important;
+            background: white !important;
+            opacity: 0.5 !important;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--primary) !important;
+            opacity: 1 !important;
+        }
+        
+        /* Novos estilos para o player de música melhorado */
+        .music-player-container {
+            perspective: 1000px;
+        }
+        
+        .music-player {
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .music-player:hover {
+            transform: translateY(-5px) rotateX(5deg);
+        }
+        
+        .album-art {
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .album-art:hover {
+            transform: scale(1.05);
+        }
+        
+        .play-btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 10px rgba(245, 158, 11, 0.3);
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+        
+        .progress-container {
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            transition: width 0.1s linear;
+        }
+        
+        .volume-container {
+            width: 100px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .music-player:hover .volume-container {
+            opacity: 1;
+        }
+        
+        .song-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .song-list.open {
+            max-height: 500px;
+        }
+        
+        .song-item {
+            transition: all 0.3s ease;
+        }
+        
+        .song-item:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .song-item.active {
+            background-color: rgba(245, 158, 11, 0.2);
+        }
+        
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            height: 20px;
+            gap: 3px;
+        }
+        
+        .equalizer-bar {
+            width: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            animation: equalizer-animation 1.5s infinite ease-in-out;
+        }
+        
+        .equalizer-bar:nth-child(1) { height: 30%; animation-delay: 0.1s; }
+        .equalizer-bar:nth-child(2) { height: 50%; animation-delay: 0.3s; }
+        .equalizer-bar:nth-child(3) { height: 70%; animation-delay: 0.5s; }
+        .equalizer-bar:nth-child(4) { height: 40%; animation-delay: 0.2s; }
+        .equalizer-bar:nth-child(5) { height: 60%; animation-delay: 0.4s; }
+        
+        @keyframes equalizer-animation {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1.5); }
+        }
+        
+        .waveform {
+            position: relative;
+            height: 40px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .waveform-line {
+            position: absolute;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+            transform-origin: bottom;
+            animation: waveform-animation 2s infinite linear;
+        }
+        
+        @keyframes waveform-animation {
+            0% { transform: scaleX(0) translateX(-100%); }
+            100% { transform: scaleX(1) translateX(100%); }
+        }
+        
         @media (max-width: 768px) {
-            .hero-image {
-                height: 60vh;
+            .parallax {
                 background-attachment: scroll;
+            }
+            
+            .text-stroke {
+                -webkit-text-stroke: 0.5px var(--primary);
+            }
+            
+            .volume-container {
+                opacity: 1;
+                width: 80px;
             }
         }
     </style>
 </head>
-<body class="font-medium transition-colors duration-300 bg-gray-50">
+<body class="bg-gray-50 text-gray-800 transition-colors duration-300">
     <!-- Header/Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-50 dark:bg-gray-900">
+    <header class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg" 
-                     alt="Logo Gilberto Gil" 
-                     class="h-12 rounded-full border-2 border-yellow-500 hover:border-yellow-600 transition-all duration-300">
-                <h1 class="text-xl font-bold text-gray-800 dark:text-yellow-400">Gilberto Gil</h1>
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
+                         alt="Logo Gilberto Gil"
+                         class="h-12 w-12 rounded-full border-2 border-yellow-500 object-cover hover:border-yellow-600 transition-all duration-300 pulse-glow">
+                    <span class="absolute -bottom-1 -right-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">GG</span>
+                </div>
+                <h1 class="text-xl font-bold text-gray-800 dark:text-yellow-400 hidden sm:block">Gilberto Gil</h1>
             </div>
             
             <nav class="hidden md:flex space-x-8">
                 <a href="#sobre" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
                     Sobre
+                </a>
+                <a href="#carreira" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
+                    Carreira
+                </a>
+                <a href="#discografia" class="nav-link text-gray-300 hover:text-yellow-600 dark:text-gray-gray-300 dark:hover:text-yellow-400 font-medium transition">
+                    Discografia
                 </a>
                 <a href="#galeria" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
                     Galeria
@@ -194,13 +401,7 @@
                 </a>
             </nav>
             
-            <div class="flex items-center space-x-4">
-                <button id="font-decrease" class="text-gray-700 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    <i class="fas fa-font text-sm"></i><span class="text-xs">A-</span>
-                </button>
-                <button id="font-increase" class="text-gray-700 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    <i class="fas fa-font"></i><span class="text-xs">A+</span>
-                </button>
+            <div class="flex items-center space-x-3">
                 <button id="dark-mode-toggle" class="bg-gray-200 dark:bg-gray-700 rounded-full p-2 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
                     <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i>
                 </button>
@@ -212,31 +413,48 @@
         
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 py-2 px-4 shadow-lg">
-            <a href="#sobre" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition">
-                Sobre
+            <a href="#sobre" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
+                <i class="fas fa-user mr-2"></i> Sobre
             </a>
-            <a href="#galeria" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition">
-                Galeria
+            <a href="#carreira" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
+                <i class="fas fa-trophy mr-2"></i> Carreira
             </a>
-            <a href="#contato" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 transition">
-                Contato
+            <a href="#discografia" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
+                <i class="fas fa-compact-disc mr-2"></i> Discografia
+            </a>
+            <a href="#galeria" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
+                <i class="fas fa-images mr-2"></i> Galeria
+            </a>
+            <a href="#contato" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 transition flex items-center">
+                <i class="fas fa-envelope mr-2"></i> Contato
             </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-image flex items-center justify-center text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-30"></div>
-        <div class="text-center px-4 z-10 animate-fade-in">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-yellow-400 floating">Gilberto Gil</h1>
-            <p class="text-2xl md:text-3xl mb-8 font-light">Música, cultura e transformação</p>
-            <a href="#sobre" class="btn-primary bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
-                Conheça sua história
-                <i class="fas fa-chevron-down ml-2 animate-bounce"></i>
-            </a>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black/30 z-10"></div>
+        <div class="parallax absolute inset-0" style="background-image: url('https://gilbertogil.com.br/wp-content/uploads/2024/03/gilbertogil.com.br-bw-20240322-lollapalooza-gilbertogil-1445-1-1-960x1200.jpg');"></div>
+        
+        <div class="container mx-auto px-4 z-20 text-center">
+            <h1 class="text-5xl md:text-8xl font-bold mb-6 text-white">
+                <span class="text-stroke">Gilberto</span> <span class="text-yellow-400 floating">Gil</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 font-light text-white max-w-2xl mx-auto">
+                Poeta da música brasileira, revolucionário cultural e voz atemporal de nossa identidade
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#sobre" class="btn-primary bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
+                    Explorar Trajetória
+                    <i class="fas fa-chevron-down ml-2 animate-bounce"></i>
+                </a>
+                <a href="#discografia" class="btn-primary bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
+                    <i class="fas fa-play mr-2"></i> Ouvir Músicas
+                </a>
+            </div>
         </div>
         
-        <div class="absolute bottom-0 left-0 right-0 flex justify-center pb-4">
+        <div class="absolute bottom-10 left-0 right-0 flex justify-center z-20">
             <a href="#sobre" class="text-white text-2xl animate-bounce">
                 <i class="fas fa-chevron-down"></i>
             </a>
@@ -246,73 +464,431 @@
     <!-- Sobre Section -->
     <section id="sobre" class="py-20 bg-white dark:bg-gray-900 section">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-yellow-400 relative inline-block">
-                Sobre Gilberto Gil
-                <span class="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"></span>
-            </h2>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400 relative inline-block">
+                    <span class="relative">
+                        Sobre Gilberto Gil
+                        <span class="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"></span>
+                    </span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Conheça a vida e obra de um dos maiores ícones da música brasileira
+                </p>
+            </div>
             
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 relative">
                     <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografa-ritacarmo4-1200x675.jpeg"
                          alt="Gilberto Gil"
-                         class="rounded-xl shadow-2xl w-full h-auto transform transition duration-500 hover:scale-105">
+                         class="rounded-xl shadow-2xl w-full h-auto transform transition duration-500 hover:scale-[1.02]">
+                    <div class="absolute -bottom-5 -right-5 bg-yellow-500 text-white p-4 rounded-xl shadow-lg hidden lg:block">
+                        <p class="font-bold text-lg">"A música é a arquitetura do ar."</p>
+                    </div>
                 </div>
                 
-                <div class="md:w-1/2">
+                <div class="lg:w-1/2">
                     <p class="text-gray-800 dark:text-gray-300 mb-6 leading-relaxed">
-                        Gilberto Passos Gil Moreira, conhecido como Gilberto Gil, é um cantor, compositor, multi-instrumentista, produtor musical e político brasileiro. Nascido em Salvador, Bahia, em 26 de junho de 1942, Gil é uma das figuras mais importantes da música popular brasileira.
+                        Gilberto Passos Gil Moreira, nascido em Salvador, Bahia, em 26 de junho de 1942, é uma das figuras mais importantes e inovadoras da música popular brasileira. Sua carreira, iniciada nos anos 1960, atravessa décadas com uma produção musical rica e diversificada.
                     </p>
                     <p class="text-gray-800 dark:text-gray-300 mb-6 leading-relaxed">
-                        Foi um dos líderes do movimento tropicalista nos anos 1960, ao lado de Caetano Veloso, e sua música incorpora uma ampla variedade de influências, incluindo samba, reggae, rock, forró e música africana.
+                        Líder do movimento tropicalista ao lado de Caetano Veloso, Gil revolucionou a MPB ao incorporar elementos del rock, reggae, música africana e eletrônica, criando uma sonoridade única que transcende fronteiras.
                     </p>
                     <p class="text-gray-800 dark:text-gray-300 mb-8 leading-relaxed">
-                        Além de sua carreira musical, Gilberto Gil serviu como Ministro da Cultura do Brasil de 2003 a 2008, durante o governo do presidente Luiz Inácio Lula da Silva. Sua obra é marcada pela inovação musical e pelo engajamento político e social.
+                        Além de sua brilhante carreira musical, Gilberto Gil serviu como Ministro da Cultura do Brasil (2003-2008), implementando políticas culturais inovadoras como os Pontos de Cultura. Sua obra é marcada pela fusão de tradição e vanguarda, sempre com um olhar atento às questões sociais e ambientais.
                     </p>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl transition-all duration-300 hover:shadow-lg">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                             <div class="flex items-center mb-3">
-                                <div class="bg-yellow-500 text-white p-2 rounded-full mr-3">
-                                    <i class="fas fa-trophy"></i>
+                                <div class="bg-yellow-500 text-white p-3 rounded-full mr-3">
+                                    <i class="fas fa-trophy text-lg"></i>
                                 </div>
-                                <h3 class="font-bold text-yellow-600 dark:text-yellow-400 text-lg">Prêmios</h3>
+                                <h3 class="font-bold text-yellow-600 dark:text-yellow-400 text-lg">Reconhecimento</h3>
                             </div>
                             <ul class="space-y-2 text-gray-800 dark:text-gray-300">
                                 <li class="flex items-center">
-                                    <i class="fas fa-star text-yellow-500 mr-2 text-xs"></i>
+                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
+                                    Prêmio Polar de Música (1999)
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
                                     9 Grammys Latinos
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-star text-yellow-500 mr-2 text-xs"></i>
-                                    2 Grammy Awards
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-star text-yellow-500 mr-2 text-xs"></i>
-                                    Prêmio Polar de Música (1999)
+                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
+                                    Doutor Honoris Causa por 5 universidades
                                 </li>
                             </ul>
                         </div>
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl transition-all duration-300 hover:shadow-lg">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                             <div class="flex items-center mb-3">
-                                <div class="bg-yellow-500 text-white p-2 rounded-full mr-3">
-                                    <i class="fas fa-compact-disc"></i>
+                                <div class="bg-yellow-500 text-white p-3 rounded-full mr-3">
+                                    <i class="fas fa-globe-americas text-lg"></i>
                                 </div>
-                                <h3 class="font-bold text-yellow-600 dark:text-yellow-400 text-lg">Álbuns</h3>
+                                <h3 class="font-bold text-yellow-600 dark:text-yellow-400 text-lg">Atuação Global</h3>
                             </div>
                             <ul class="space-y-2 text-gray-800 dark:text-gray-300">
                                 <li class="flex items-center">
-                                    <i class="fas fa-music text-yellow-500 mr-2 text-xs"></i>
-                                    Mais de 60 álbuns lançados
+                                    <i class="fas fa-music text-yellow-500 mr-2"></i>
+                                    Turnês em mais de 50 países
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-music text-yellow-500 mr-2 text-xs"></i>
-                                    Destaque: "Refazenda" (1975)
+                                    <i class="fas fa-users text-yellow-500 mr-2"></i>
+                                    Embaixador da FAO (ONU)
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-music text-yellow-500 mr-2 text-xs"></i>
-                                    "Expresso 2222" (1972)
+                                    <i class="fas fa-leaf text-yellow-500 mr-2"></i>
+                                    Ativista ambiental
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carreira Section -->
+    <section id="carreira" class="py-20 bg-gray-100 dark:bg-gray-800 section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400">Linha do Tempo</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Principais marcos na trajetória artística e política de Gilberto Gil
+                </p>
+            </div>
+            
+            <div class="relative pl-10 timeline max-w-4xl mx-auto">
+                <!-- Timeline Items -->
+                <div class="relative mb-12 timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1963</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Primeiro Disco</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Lançamento do primeiro compacto com "Biquíni de Bolinha Amarelinha" e "Coça, Coça, Lacerdinha".
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative mb-12 timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1967</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Tropicália</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Junto com Caetano Veloso, Gal Costa e Tom Zé, lança o movimento tropicalista que revolucionou a MPB.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative mb-12 timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1969</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Exílio</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Preso pela ditadura militar e depois exilado em Londres, onde absorve influências do rock e da música mundial.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative mb-12 timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1972</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Expresso 2222</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Lança o álbum clássico com canções como "Back in Bahia" e "Oriente", marcando seu retorno ao Brasil.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative mb-12 timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1999</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Prêmio Polar</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Recebe o prestigioso Prêmio Polar, considerado o "Nobel da Música", pelo conjunto de sua obra.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative mb-12 timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">2003-2008</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Ministro da Cultura</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            À frente do Ministério da Cultura, implementa políticas inovadoras como os Pontos de Cultura e a reforma da Lei Rouanet.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative timeline-item pl-8">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">2020s</span>
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Legado Contínuo</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Continua ativo na música e no ativismo, com turnês internacionais e engajamento em causas ambientais e culturais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discografia Section -->
+    <section id="discografia" class="py-20 bg-white dark:bg-gray-900 section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400">Discografia Essencial</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Explore os álbuns que marcaram a trajetória musical de Gilberto Gil
+                </p>
+            </div>
+            
+            <!-- Swiper Album Gallery -->
+            <div class="swiper albumSwiper max-w-4xl mx-auto mb-12">
+                <div class="swiper-wrapper pb-12">
+                    <!-- Album 1 -->
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center">
+                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
+                                <img src="https://i.scdn.co/image/ab67616d0000b273e7bd00d1e805d59f1ffef1d0"
+                                     alt="Frevo Rasgado"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Frevo Rasgado (1968)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Clássico tropicalista</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Album 2 -->
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center">
+                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
+                                <img src="https://monkeybuzz.com.br/wp-content/uploads/2020/08/expresso-2222.png"
+                                     alt="Expresso 2222"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Expresso 2222 (1972)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Pós-exílio criativo</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Album 3 -->
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center">
+                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
+                                <img src="https://gilbertogil.com.br/wp-content/uploads/2020/02/gilberto-gil-11-g-500x500.jpeg"
+                                     alt="Refazenda"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Refazenda (1975)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Raízes e inovação</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Album 4 -->
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center">
+                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
+                                <img src="https://monkeybuzz.com.br/wp-content/uploads/2020/08/realce.jpg"
+                                     alt="Realce"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Realce (1979)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Fusão com pop e disco</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Album 5 -->
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center">
+                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
+                                <img src="https://monkeybuzz.com.br/wp-content/uploads/2020/08/um-banda-um.png"
+                                     alt="Um Banda Um"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Um Banda Um (1982)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Experimentos eletrônicos</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Album 6 -->
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center">
+                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
+                                <img src="https://s2-g1.glbimg.com/E2XZEbLVhQ157A4OIT72eUn8AjE=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/N/r/4eyuMARMibFiR0T0RQEA/gilquanta.jpg"
+                                     alt="Quanta"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Quanta (1997)</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Grammy Latino de Melhor Álbum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            
+            <!-- Music Player - Versão Melhorada -->
+            <div class="music-player-container">
+                <div class="music-player rounded-xl p-6 max-w-4xl mx-auto shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900">
+                    <h3 class="font-bold text-2xl mb-6 text-white text-center">Ouça Agora: <span class="text-yellow-400">Refazenda</span></h3>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
+                        <div class="album-art w-40 h-40 rounded-lg overflow-hidden flex-shrink-0">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2020/02/gilberto-gil-11-g-500x500.jpeg"
+                                alt="Capa Refazenda"
+                                class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="flex-grow w-full">
+                            <div class="mb-4">
+                                <h4 class="font-bold text-xl text-white">Refazenda</h4>
+                                <p class="text-gray-300">Gilberto Gil (1975)</p>
+                            </div>
+                            
+                            <div class="waveform mb-2">
+                                <div class="waveform-line"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-gray-300 text-sm">1:24</span>
+                                <span class="text-gray-300 text-sm">3:42</span>
+                            </div>
+                            
+                            <div class="progress-container w-full h-1 bg-gray-700 rounded-full mb-4">
+                                <div class="progress h-full bg-yellow-500 rounded-full" style="width: 30%;"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <button class="text-gray-300 hover:text-yellow-400 transition">
+                                    <i class="fas fa-random text-lg"></i>
+                                </button>
+                                
+                                <button class="text-gray-300 hover:text-yellow-400 transition">
+                                    <i class="fas fa-step-backward text-xl"></i>
+                                </button>
+                                
+                                <button class="play-btn bg-yellow-500 hover:bg-yellow-600 text-white rounded-full w-14 h-14 flex items-center justify-center transition">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </button>
+                                
+                                <button class="text-gray-300 hover:text-yellow-400 transition">
+                                    <i class="fas fa-step-forward text-xl"></i>
+                                </button>
+                                
+                                <button class="text-gray-300 hover:text-yellow-400 transition">
+                                    <i class="fas fa-redo text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <button class="text-gray-300 hover:text-yellow-400 mr-4 transition">
+                                <i class="fas fa-heart text-lg"></i>
+                            </button>
+                            
+                            <button class="text-gray-300 hover:text-yellow-400 mr-4 transition">
+                                <i class="fas fa-list text-lg"></i>
+                            </button>
+                            
+                            <div class="volume-container flex items-center">
+                                <i class="fas fa-volume-down text-gray-300 mr-2"></i>
+                                <input type="range" min="0" max="100" value="80" class="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer">
+                            </div>
+                        </div>
+                        
+                        <div class="equalizer">
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button id="toggle-songs" class="w-full py-2 text-gray-300 hover:text-yellow-400 transition flex items-center justify-center">
+                            <span>Ver faixas do álbum</span>
+                            <i class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                        
+                        <div class="song-list mt-4">
+                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="text-yellow-500 mr-3">1</span>
+                                    <div>
+                                        <h4 class="font-medium text-white">Refazenda</h4>
+                                        <p class="text-gray-400 text-sm">3:42</p>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400">Tocando agora</span>
+                            </div>
+                            
+                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="text-gray-400 mr-3">2</span>
+                                    <div>
+                                        <h4 class="font-medium text-white">Essa é pra tocar no rádio</h4>
+                                        <p class="text-gray-400 text-sm">4:15</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="text-gray-400 mr-3">3</span>
+                                    <div>
+                                        <h4 class="font-medium text-white">Jeca Total</h4>
+                                        <p class="text-gray-400 text-sm">3:10</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="text-gray-400 mr-3">4</span>
+                                    <div>
+                                        <h4 class="font-medium text-white">Pai e Mãe</h4>
+                                        <p class="text-gray-400 text-sm">2:58</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="text-gray-400 mr-3">5</span>
+                                    <div>
+                                        <h4 class="font-medium text-white">Tenho Sede</h4>
+                                        <p class="text-gray-400 text-sm">3:25</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="https://open.spotify.com/artist/7oEkUINVIj1Nr3Wnj8tzqr" target="_blank" class="bg-black text-white px-6 py-3 rounded-full flex items-center justify-center hover:bg-gray-900 transition">
+                            <i class="fab fa-spotify mr-2 text-xl"></i> Ouvir no Spotify
+                        </a>
+                        
+                        <a href="https://music.apple.com/br/artist/gilberto-gil/106194" target="_blank" class="bg-black text-white px-6 py-3 rounded-full flex items-center justify-center hover:bg-gray-900 transition">
+                            <i class="fab fa-apple mr-2 text-xl"></i> Ouvir no Apple Music
+                        </a>
                     </div>
                 </div>
             </div>
@@ -322,98 +898,109 @@
     <!-- Galeria Section -->
     <section id="galeria" class="py-20 bg-gray-100 dark:bg-gray-800 section">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-yellow-400">Galeria</h2>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400">Galeria</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Momentos marcantes da carreira de Gilberto Gil em imagens
+                </p>
+            </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2024/03/gilbertogil.com.br-bw-20240322-lollapalooza-gilbertogil-1445-1-1-960x1200.jpg"
-                             alt="Gilberto Gil no Lollapalooza"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <!-- Swiper Gallery -->
+            <div class="swiper gallerySwiper max-w-6xl mx-auto">
+                <div class="swiper-wrapper pb-12">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2024/03/gilbertogil.com.br-bw-20240322-lollapalooza-gilbertogil-1445-1-1-960x1200.jpg"
+                                 alt="Gilberto Gil no Lollapalooza"
+                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white mb-1">Lollapalooza 2024</h3>
+                                    <p class="text-gray-200">Aos 81 anos, Gil continua a encantar plateias em grandes festivais</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">Lollapalooza 2024</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Performance no festival internacional</p>
-                        <div class="mt-4 flex justify-end">
-                            <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">Show</span>
+                    
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2022/04/gilbertogil.com.br-abl-previa12-800x1200.jpg"
+                                 alt="Gilberto Gil na ABL"
+                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white mb-1">Academia Brasileira de Letras</h3>
+                                    <p class="text-gray-200">Eleito para a cadeira 20 da ABL em 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografo-niclasweber-1200x800.jpg"
+                                 alt="Gilberto Gil em show"
+                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white mb-1">Show Internacional</h3>
+                                    <p class="text-gray-200">Levando a música brasileira para o mundo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-foto-tatiana-valenca-fotografapelaeuropa33-1200x800.jpg"
+                                 alt="Gilberto Gil em estúdio"
+                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white mb-1">No Estúdio</h3>
+                                    <p class="text-gray-200">Processo criativo de gravação</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografo-irakerly-12-1200x960.jpg"
+                                 alt="Gilberto Gil em entrevista"
+                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white mb-1">Entrevista</h3>
+                                    <p class="text-gray-200">Compartilhando suas ideias e visões</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
+                                 alt="Gilberto Gil retrato"
+                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <div>
+                                    <h3 class="font-bold text-xl text-white mb-1">Retrato</h3>
+                                    <p class="text-gray-200">O artista em seu elemento</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2022/04/gilbertogil.com.br-abl-previa12-800x1200.jpg"
-                             alt="Gilberto Gil na ABL"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">Academia Brasileira de Letras</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Gilberto Gil como imortal da ABL</p>
-                        <div class="mt-4 flex justify-end">
-                            <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Honraria</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografo-niclasweber-1200x800.jpg"
-                             alt="Gilberto Gil em show"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">Show Internacional</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Apresentação em turnê mundial</p>
-                        <div class="mt-4 flex justify-end">
-                            <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">Show</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-foto-tatiana-valenca-fotografapelaeuropa33-1200x800.jpg"
-                             alt="Gilberto Gil em estúdio"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">No Estúdio</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Processo criativo de gravação</p>
-                        <div class="mt-4 flex justify-end">
-                            <span class="bg-purple-500 text-white text-xs px-2 py-1 rounded-full">Gravação</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografo-irakerly-12-1200x960.jpg"
-                             alt="Gilberto Gil em entrevista"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">Entrevista</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Compartilhando suas ideias</p>
-                        <div class="mt-4 flex justify-end">
-                            <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">Entrevista</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                    <div class="overflow-hidden h-64">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
-                             alt="Gilberto Gil retrato"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">Retrato</h3>
-                        <p class="text-gray-600 dark:text-gray-300">O artista em seu elemento</p>
-                        <div class="mt-4 flex justify-end">
-                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">Fotografia</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next text-yellow-500"></div>
+                <div class="swiper-button-prev text-yellow-500"></div>
             </div>
         </div>
     </section>
@@ -421,56 +1008,102 @@
     <!-- Contato Section -->
     <section id="contato" class="py-20 bg-yellow-600 dark:bg-yellow-800 section">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-16 text-white">Contato</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <p class="text-center mb-12 text-xl text-white opacity-90">
-                    Entre em contato com a equipe de Gilberto Gil para informações sobre shows, projetos culturais ou parcerias.
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-white">Contato</h2>
+                <p class="text-white/90 max-w-2xl mx-auto">
+                    Entre em contato para shows, projetos culturais ou parcerias
                 </p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                    <a href="https://wa.me/5511999999999" target="_blank" 
-                       class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="bg-yellow-100 dark:bg-yellow-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fab fa-whatsapp text-3xl text-yellow-600 dark:text-yellow-400"></i>
+            </div>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition">
+                    <h3 class="font-bold text-2xl mb-6 text-gray-800 dark:text-white">Envie uma mensagem</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 dark:text-gray-300 mb-1">Nome</label>
+                            <input type="text" id="name"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
                         </div>
-                        <h3 class="font-bold text-xl mb-2">WhatsApp</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">+55 11 99999-9999</p>
-                    </a>
-                    
-                    <a href="https://instagram.com/gilbertogil" target="_blank" 
-                       class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="bg-yellow-100 dark:bg-yellow-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fab fa-instagram text-3xl text-yellow-600 dark:text-yellow-400"></i>
+                        <div>
+                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-1">E-mail</label>
+                            <input type="email" id="email"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
                         </div>
-                        <h3 class="font-bold text-xl mb-2">Instagram</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">@gilbertogil</p>
-                    </a>
-                    
-                    <a href="mailto:contato@gilbertogil.com.br" 
-                       class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="bg-yellow-100 dark:bg-yellow-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-envelope text-3xl text-yellow-600 dark:text-yellow-400"></i>
+                        <div>
+                            <label for="subject" class="block text-gray-700 dark:text-gray-300 mb-1">Assunto</label>
+                            <select id="subject"
+                                     class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
+                                <option>Show/Evento</option>
+                                <option>Projeto Cultural</option>
+                                <option>Parceria</option>
+                                <option>Outro</option>
+                            </select>
                         </div>
-                        <h3 class="font-bold text-xl mb-2">E-mail</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">contato@gilbertogil.com.br</p>
-                    </a>
-                </div>
-                
-                <div class="mt-12 bg-white dark:bg-gray-900 bg-opacity-90 rounded-xl p-8 shadow-lg">
-                    <h3 class="font-bold text-2xl mb-4 text-center text-gray-800 dark:text-white">Newsletter</h3>
-                    <p class="text-center mb-6 text-gray-600 dark:text-gray-300">
-                        Receba novidades sobre shows, lançamentos e projetos culturais
-                    </p>
-                    <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                        <input type="email" placeholder="Seu melhor e-mail" 
-                               class="flex-grow px-5 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
-                        <button type="submit" 
-                                class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg transition">
-                            Assinar
+                        <div>
+                            <label for="message" class="block text-gray-700 dark:text-gray-300 mb-1">Mensagem</label>
+                            <textarea id="message" rows="4"
+                                       class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white"></textarea>
+                        </div>
+                        <button type="submit"
+                                 class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                            Enviar Mensagem
                         </button>
                     </form>
                 </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-xl text-yellow-600 dark:text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-white">Escritório</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Salvador, Bahia - Brasil</p>
+                            </div>
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15551.99128822304!2d-38.5157343!3d-12.9721126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161b14e87f4aa1%3A0x8a9b3b7a1a1b3b1a!2sPelourinho%2C%20Salvador%20-%20BA!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"
+                                 class="w-full h-48 rounded-lg border-0"
+                                 allowfullscreen=""
+                                 loading="lazy"
+                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="https://wa.me/5511999999999" target="_blank"
+                           class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-6 text-center hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fab fa-whatsapp text-xl text-yellow-600 dark:text-yellow-400"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-1">WhatsApp</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">+55 11 99999-9999</p>
+                        </a>
+                        
+                        <a href="https://instagram.com/gilbertogil" target="_blank"
+                           class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-6 text-center hover:shadow-xl transition transform hover:-translate-y-1">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fab fa-instagram text-xl text-yellow-600 dark:text-yellow-400"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-1">Instagram</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">@gilbertogil</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-white dark:bg-gray-900 rounded-xl p-8 max-w-4xl mx-auto shadow-lg">
+                <h3 class="font-bold text-2xl mb-4 text-center text-gray-800 dark:text-white">Newsletter</h3>
+                <p class="text-center mb-6 text-gray-600 dark:text-gray-300">
+                    Receba novidades sobre shows, lançamentos e projetos culturais
+                </p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="Seu melhor e-mail"
+                           class="flex-grow px-5 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
+                    <button type="submit"
+                            class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg transition">
+                        Assinar
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -478,78 +1111,107 @@
     <!-- Footer -->
     <footer class="bg-gray-800 dark:bg-gray-900 text-white py-12 section">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div class="mb-6 md:mb-0 text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start">
-                        <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg" 
-                             alt="Logo Gilberto Gil" 
-                             class="h-12 rounded-full border-2 border-yellow-500 mr-3">
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-8 gap-8">
+                <div class="text-center lg:text-left">
+                    <div class="flex items-center justify-center lg:justify-start mb-4">
+                        <div class="relative mr-3">
+                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
+                                 alt="Logo Gilberto Gil"
+                                 class="h-12 w-12 rounded-full border-2 border-yellow-500 object-cover">
+                            <span class="absolute -bottom-1 -right-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">GG</span>
+                        </div>
                         <h2 class="text-2xl font-bold">Gilberto Gil</h2>
                     </div>
-                    <p class="text-gray-400 mt-2">Música e cultura brasileira</p>
+                    <p class="text-gray-400 max-w-md">
+                        Poeta da música brasileira, revolucionário cultural e voz atemporal de nossa identidade.
+                    </p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 text-xl transition">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 text-xl transition">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 text-xl transition">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 text-xl transition">
-                        <i class="fab fa-spotify"></i>
-                    </a>
-                    <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 text-xl transition">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                <div class="flex flex-col sm:flex-row gap-8 text-center sm:text-left">
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 text-yellow-400">Navegação</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#sobre" class="text-gray-400 hover:text-white transition">Sobre</a></li>
+                            <li><a href="#carreira" class="text-gray-400 hover:text-white transition">Carreira</a></li>
+                            <li><a href="#discografia" class="text-gray-400 hover:text-white transition">Discografia</a></li>
+                            <li><a href="#galeria" class="text-gray-400 hover:text-white transition">Galeria</a></li>
+                            <li><a href="#contato" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 text-yellow-400">Redes Sociais</h3>
+                        <div class="flex justify-center sm:justify-start space-x-4">
+                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
+                                <i class="fab fa-spotify"></i>
+                            </a>
+                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="border-t border-gray-700 dark:border-gray-800 pt-8 text-center">
-                <p class="text-gray-400 text-sm">
+                <p class="text-gray-400">
                     © 2024 Projeto Escolar sobre Gilberto Gil. Todos os direitos reservados.
                 </p>
-                <p class="mt-2 text-gray-500 text-xs">
-                    Desenvolvido por alunos para fins educacionais.
+                <p class="mt-2 text-gray-500 text-sm">
+                    Desenvolvido com ❤️ por alunos para fins educacionais.
                 </p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Font size control
-        document.getElementById('font-increase').addEventListener('click', function() {
-            const body = document.body;
-            if (body.classList.contains('font-small')) {
-                body.classList.remove('font-small');
-                body.classList.add('font-medium');
-            } else if (body.classList.contains('font-medium')) {
-                body.classList.remove('font-medium');
-                body.classList.add('font-large');
-            } else if (body.classList.contains('font-large')) {
-                body.classList.remove('font-large');
-                body.classList.add('font-xlarge');
-            } else if (!body.classList.contains('font-xlarge')) {
-                body.classList.add('font-large');
+        // Initialize Swiper for Albums
+        const albumSwiper = new Swiper('.albumSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
             }
         });
         
-        document.getElementById('font-decrease').addEventListener('click', function() {
-            const body = document.body;
-            if (body.classList.contains('font-xlarge')) {
-                body.classList.remove('font-xlarge');
-                body.classList.add('font-large');
-            } else if (body.classList.contains('font-large')) {
-                body.classList.remove('font-large');
-                body.classList.add('font-medium');
-            } else if (body.classList.contains('font-medium')) {
-                body.classList.remove('font-medium');
-                body.classList.add('font-small');
-            } else if (!body.classList.contains('font-small')) {
-                body.classList.add('font-medium');
+        // Initialize Swiper for Gallery
+        const gallerySwiper = new Swiper('.gallerySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
             }
         });
         
@@ -621,6 +1283,134 @@
         
         sections.forEach(section => {
             observer.observe(section);
+        });
+        
+        // Music player simulation - Versão Melhorada
+        const playButton = document.querySelector('.play-btn');
+        const progressBar = document.querySelector('.progress');
+        const progressContainer = document.querySelector('.progress-container');
+        const songList = document.querySelector('.song-list');
+        const toggleSongsButton = document.getElementById('toggle-songs');
+        const songItems = document.querySelectorAll('.song-item');
+        const equalizer = document.querySelector('.equalizer');
+        let isPlaying = false;
+        let progress = 0;
+        let progressInterval;
+        let currentSong = 0;
+        
+        // Toggle play/pause
+        playButton.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            isPlaying = !isPlaying;
+            
+            if (isPlaying) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                
+                // Animar equalizador
+                equalizer.style.display = 'flex';
+                
+                progressInterval = setInterval(() => {
+                    progress += 0.5;
+                    if (progress > 100) {
+                        progress = 0;
+                        playNextSong();
+                    }
+                    progressBar.style.width = `${progress}%`;
+                }, 500);
+            } else {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                clearInterval(progressInterval);
+                
+                // Parar equalizador
+                equalizer.style.display = 'none';
+            }
+        });
+        
+        // Click na barra de progresso
+        progressContainer.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            progress = pos * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+        
+        // Toggle lista de músicas
+        toggleSongsButton.addEventListener('click', function() {
+            songList.classList.toggle('open');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+        
+        // Selecionar música da lista
+        songItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                // Remover classe active de todas as músicas
+                songItems.forEach(song => song.classList.remove('active'));
+                
+                // Adicionar classe active à música selecionada
+                this.classList.add('active');
+                
+                // Atualizar música atual
+                currentSong = index;
+                
+                // Resetar progresso
+                progress = 0;
+                progressBar.style.width = '0%';
+                
+                // Se estiver tocando, continuar tocando
+                if (isPlaying) {
+                    const icon = playButton.querySelector('i');
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    
+                    // Atualizar texto "Tocando agora"
+                    songItems.forEach(song => {
+                        const nowPlayingText = song.querySelector('span:last-child');
+                        if (nowPlayingText) nowPlayingText.textContent = '';
+                    });
+                    
+                    const nowPlayingText = this.querySelector('span:last-child');
+                    if (nowPlayingText) nowPlayingText.textContent = 'Tocando agora';
+                }
+            });
+        });
+        
+        // Função para tocar próxima música
+        function playNextSong() {
+            currentSong = (currentSong + 1) % songItems.length;
+            const nextSong = songItems[currentSong];
+            
+            // Remover classe active de todas as músicas
+            songItems.forEach(song => song.classList.remove('active'));
+            
+            // Adicionar classe active à próxima música
+            nextSong.classList.add('active');
+            
+            // Resetar progresso
+            progress = 0;
+            progressBar.style.width = '0%';
+            
+            // Atualizar texto "Tocando agora"
+            songItems.forEach(song => {
+                const nowPlayingText = song.querySelector('span:last-child');
+                if (nowPlayingText) nowPlayingText.textContent = '';
+            });
+            
+            const nowPlayingText = nextSong.querySelector('span:last-child');
+            if (nowPlayingText) nowPlayingText.textContent = 'Tocando agora';
+            
+            // Simular clique na próxima música para disparar eventos
+            nextSong.click();
+        }
+        
+        // Volume control
+        const volumeSlider = document.querySelector('.volume-container input');
+        volumeSlider.addEventListener('input', function() {
+            // Simular ajuste de volume
+            console.log('Volume ajustado para:', this.value);
         });
     </script>
 </body>
