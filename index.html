@@ -3,1246 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gilberto Gil | Legado Musical e Cultural</title>
+    <title>Quebradores FC - Procurando Talentos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <style>
-        :root {
-            --primary: #f59e0b;
-            --primary-dark: #d97706;
-            --dark: #1f2937;
-            --darker: #111827;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#7dd3fc',  // sky-300
+                            DEFAULT: '#0ea5e9', // sky-500
+                            dark: '#0369a1',    // sky-700
+                        },
+                        secondary: {
+                            light: '#93c5fd',   // blue-300
+                            DEFAULT: '#3b82f6',  // blue-500
+                            dark: '#1d4ed8',    // blue-700
+                        }
+                    }
+                }
+            }
         }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
         body {
             font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            scroll-behavior: smooth;
+            background-color: #0f172a;
+            color: #e2e8f0;
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(245,158,11,0.8) 0%, rgba(217,119,6,0.9) 100%);
-        }
-        
-        .text-stroke {
-            -webkit-text-stroke: 1px var(--primary);
+        .gradient-text {
+            background: linear-gradient(90deg, #7dd3fc, #93c5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
         }
         
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -24px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid white;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 18px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--primary);
-        }
-        
-        .album-cover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .album-cover:hover {
-            transform: translateY(-10px) scale(1.03);
-        }
-        
-        .music-player {
-            background: linear-gradient(135deg, rgba(31,41,55,0.9) 0%, rgba(17,24,39,0.95) 100%);
-            backdrop-filter: blur(10px);
-        }
-        
-        .progress-bar {
-            height: 4px;
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .progress {
-            height: 100%;
-            background: var(--primary);
-            width: 30%;
-        }
-        
-        .dark-mode {
-            background-color: var(--darker);
-            color: #f3f4f6;
-        }
-        
-        .dark-mode .bg-white {
-            background-color: var(--dark) !important;
-            color: #f3f4f6 !important;
-        }
-        
-        .dark-mode .text-gray-800 {
-            color: #f3f4f6 !important;
-        }
-        
-        .dark-mode .bg-gray-100 {
-            background-color: #374151 !important;
-            color: #f3f4f6 !important;
-        }
-        
-        .dark-mode .bg-gray-800 {
-            background-color: #030712 !important;
-        }
-        
-        .dark-mode .text-gray-600 {
-            color: #d1d5db !important;
-        }
-        
-        .dark-mode .bg-yellow-600 {
-            background-color: var(--primary-dark) !important;
-        }
-        
-        .dark-mode .text-yellow-600 {
-            color: var(--primary) !important;
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-            border-radius: 3px;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .btn-primary {
+        .player-card {
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255,255,255,0.1);
-            transform: rotate(30deg);
-            transition: all 0.3s ease;
-            opacity: 0;
+        .pulse {
+            animation: pulse 2s infinite;
         }
         
-        .btn-primary:hover::after {
-            left: 100%;
-            opacity: 1;
-        }
-        
-        .social-icon {
-            transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .social-icon:hover {
-            transform: scale(1.1) rotate(5deg);
-            background: rgba(245,158,11,0.1);
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-        
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-            50% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
-        }
-        
-        .pulse-glow {
-            animation: pulse-glow 2s infinite;
-        }
-        
-        .swiper-pagination-bullet {
-            width: 12px !important;
-            height: 12px !important;
-            background: white !important;
-            opacity: 0.5 !important;
-        }
-        
-        .swiper-pagination-bullet-active {
-            background: var(--primary) !important;
-            opacity: 1 !important;
-        }
-        
-        /* Novos estilos para o player de música melhorado */
-        .music-player-container {
-            perspective: 1000px;
-        }
-        
-        .music-player {
-            transform-style: preserve-3d;
-            transition: all 0.5s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        
-        .music-player:hover {
-            transform: translateY(-5px) rotateX(5deg);
-        }
-        
-        .album-art {
-            transition: all 0.5s ease;
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
-        }
-        
-        .album-art:hover {
-            transform: scale(1.05);
-        }
-        
-        .play-btn {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 10px rgba(245, 158, 11, 0.3);
-        }
-        
-        .play-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 0 15px rgba(245, 158, 11, 0.2);
-        }
-        
-        .progress-container {
-            cursor: pointer;
-        }
-        
-        .progress-bar {
-            transition: width 0.1s linear;
-        }
-        
-        .volume-container {
-            width: 100px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .music-player:hover .volume-container {
-            opacity: 1;
-        }
-        
-        .song-list {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        
-        .song-list.open {
-            max-height: 500px;
-        }
-        
-        .song-item {
-            transition: all 0.3s ease;
-        }
-        
-        .song-item:hover {
-            background-color: rgba(245, 158, 11, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .song-item.active {
-            background-color: rgba(245, 158, 11, 0.2);
-        }
-        
-        .equalizer {
-            display: flex;
-            align-items: flex-end;
-            height: 20px;
-            gap: 3px;
-        }
-        
-        .equalizer-bar {
-            width: 3px;
-            background-color: var(--primary);
-            border-radius: 3px;
-            animation: equalizer-animation 1.5s infinite ease-in-out;
-        }
-        
-        .equalizer-bar:nth-child(1) { height: 30%; animation-delay: 0.1s; }
-        .equalizer-bar:nth-child(2) { height: 50%; animation-delay: 0.3s; }
-        .equalizer-bar:nth-child(3) { height: 70%; animation-delay: 0.5s; }
-        .equalizer-bar:nth-child(4) { height: 40%; animation-delay: 0.2s; }
-        .equalizer-bar:nth-child(5) { height: 60%; animation-delay: 0.4s; }
-        
-        @keyframes equalizer-animation {
-            0%, 100% { transform: scaleY(0.5); }
-            50% { transform: scaleY(1.5); }
-        }
-        
-        .waveform {
-            position: relative;
-            height: 40px;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .waveform-line {
-            position: absolute;
-            bottom: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
-            transform-origin: bottom;
-            animation: waveform-animation 2s infinite linear;
-        }
-        
-        @keyframes waveform-animation {
-            0% { transform: scaleX(0) translateX(-100%); }
-            100% { transform: scaleX(1) translateX(100%); }
-        }
-        
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll;
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
             }
-            
-            .text-stroke {
-                -webkit-text-stroke: 0.5px var(--primary);
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
             }
-            
-            .volume-container {
-                opacity: 1;
-                width: 80px;
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 transition-colors duration-300">
-    <!-- Header/Navigation -->
-    <header class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="relative">
-                    <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
-                         alt="Logo Gilberto Gil"
-                         class="h-12 w-12 rounded-full border-2 border-yellow-500 object-cover hover:border-yellow-600 transition-all duration-300 pulse-glow">
-                    <span class="absolute -bottom-1 -right-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">GG</span>
+<body class="min-h-screen">
+    <!-- Header/Navbar -->
+    <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="https://i.postimg.cc/mDjFBpYR/Quebradores-Principal-Sem-Fundo.png" alt="Quebradores FC Logo" class="h-12">
+                    <span class="text-xl font-bold gradient-text">Quebradores FC</span>
                 </div>
-                <h1 class="text-xl font-bold text-gray-800 dark:text-yellow-400 hidden sm:block">Gilberto Gil</h1>
-            </div>
-            
-            <nav class="hidden md:flex space-x-8">
-                <a href="#sobre" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
-                    Sobre
-                </a>
-                <a href="#carreira" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
-                    Carreira
-                </a>
-                <a href="#discografia" class="nav-link text-gray-300 hover:text-yellow-600 dark:text-gray-gray-300 dark:hover:text-yellow-400 font-medium transition">
-                    Discografia
-                </a>
-                <a href="#galeria" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
-                    Galeria
-                </a>
-                <a href="#contato" class="nav-link text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 font-medium transition">
-                    Contato
-                </a>
-            </nav>
-            
-            <div class="flex items-center space-x-3">
-                <button id="dark-mode-toggle" class="bg-gray-200 dark:bg-gray-700 rounded-full p-2 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-                    <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i>
-                </button>
-                <button class="md:hidden text-gray-700 dark:text-gray-300 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition" id="mobile-menu-button">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="text-gray-300 hover:text-primary-light transition">Sobre</a>
+                    <a href="#positions" class="text-gray-300 hover:text-primary-light transition">Vagas</a>
+                    <a href="#team" class="text-gray-300 hover:text-primary-light transition">Time</a>
+                    <a href="#contact" class="text-gray-300 hover:text-primary-light transition">Contato</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-300 hover:text-primary-light focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 py-2 px-4 shadow-lg">
-            <a href="#sobre" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
-                <i class="fas fa-user mr-2"></i> Sobre
-            </a>
-            <a href="#carreira" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
-                <i class="fas fa-trophy mr-2"></i> Carreira
-            </a>
-            <a href="#discografia" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
-                <i class="fas fa-compact-disc mr-2"></i> Discografia
-            </a>
-            <a href="#galeria" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 border-b border-gray-100 dark:border-gray-700 transition flex items-center">
-                <i class="fas fa-images mr-2"></i> Galeria
-            </a>
-            <a href="#contato" class="block py-3 text-gray-800 hover:text-yellow-600 dark:text-gray-300 dark:hover:text-yellow-400 transition flex items-center">
-                <i class="fas fa-envelope mr-2"></i> Contato
-            </a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="#about" class="text-gray-300 hover:text-primary-light py-2 transition">Sobre</a>
+                <a href="#positions" class="text-gray-300 hover:text-primary-light py-2 transition">Vagas</a>
+                <a href="#team" class="text-gray-300 hover:text-primary-light py-2 transition">Time</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary-light py-2 transition">Contato</a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-black/30 z-10"></div>
-        <div class="parallax absolute inset-0" style="background-image: url('https://gilbertogil.com.br/wp-content/uploads/2024/03/gilbertogil.com.br-bw-20240322-lollapalooza-gilbertogil-1445-1-1-960x1200.jpg');"></div>
-        
-        <div class="container mx-auto px-4 z-20 text-center">
-            <h1 class="text-5xl md:text-8xl font-bold mb-6 text-white">
-                <span class="text-stroke">Gilberto</span> <span class="text-yellow-400 floating">Gil</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 font-light text-white max-w-2xl mx-auto">
-                Poeta da música brasileira, revolucionário cultural e voz atemporal de nossa identidade
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#sobre" class="btn-primary bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
-                    Explorar Trajetória
-                    <i class="fas fa-chevron-down ml-2 animate-bounce"></i>
-                </a>
-                <a href="#discografia" class="btn-primary bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
-                    <i class="fas fa-play mr-2"></i> Ouvir Músicas
-                </a>
+    <section class="relative bg-gradient-to-b from-gray-900 to-gray-800 py-20">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1579952363871-5b1cd08a1491?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        <span class="gradient-text">Junte-se aos</span><br>
+                        <span class="text-white">Quebradores FC</span>
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Estamos procurando talentos para reforçar nosso elenco no EAFC 25. 
+                        Se você tem o que é preciso para jogar em um time NV10, esta é sua chance!
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://wa.me/5545988312179" 
+                           class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Fale conosco</span>
+                        </a>
+                        <a href="#positions" 
+                           class="border border-primary-light text-primary-light hover:bg-primary-dark hover:bg-opacity-20 px-6 py-3 rounded-lg font-medium transition">
+                            Ver vagas
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://i.postimg.cc/mDjFBpYR/Quebradores-Principal-Sem-Fundo.png" 
+                             alt="Quebradores FC Logo" 
+                             class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain">
+                        <div class="absolute -inset-4 bg-primary-dark rounded-full opacity-20 blur-lg"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="absolute bottom-10 left-0 right-0 flex justify-center z-20">
-            <a href="#sobre" class="text-white text-2xl animate-bounce">
-                <i class="fas fa-chevron-down"></i>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="gradient-text">Sobre o Time</span>
+                </h2>
+                <div class="w-24 h-1 bg-primary-light mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary-light">Quebradores FC - A Nova Geração</h3>
+                    <p class="text-gray-300 mb-4">
+                        Somos um time organizado e competitivo no EAFC 25, com reputação NV10. 
+                        Nosso clube é dividido entre a "base", focada em diversão e desenvolvimento de todos os jogadores, 
+                        e o time titular, que compete em campeonatos de alto nível.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        Temos um Instagram ativo onde postamos os melhores clipes, destaques dos jogadores da semana 
+                        e todo o conteúdo relacionado ao nosso time.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-primary-light transition">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-primary-light transition">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-primary-light transition">
+                            <i class="fab fa-discord text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-700 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">NV10</div>
+                        <div class="text-gray-300 text-sm">Reputação</div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">2</div>
+                        <div class="text-gray-300 text-sm">Times</div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">20+</div>
+                        <div class="text-gray-300 text-sm">Jogadores</div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4 flex flex-col items-center justify-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">🏆</div>
+                        <div class="text-gray-300 text-sm">Campeonatos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Positions Section -->
+    <section id="positions" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="gradient-text">Vagas Abertas</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Estamos reforçando nosso elenco para a próxima temporada. Confira as posições que precisamos!
+                </p>
+                <div class="w-24 h-1 bg-primary-light mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Zagueiro Card -->
+                <div class="player-card bg-gray-800 rounded-xl overflow-hidden border-l-4 border-primary-light pulse">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-dark rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-xl text-primary-light"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-4">Zagueiro</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Buscamos um zagueiro sólido, com boa leitura de jogo e capacidade para sair jogando. 
+                            Experiência em linhas de 4 e 3 defensores é um diferencial.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-400 mb-2">Requisitos:</h4>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-light mr-2 text-xs"></i>
+                                    Defesa sólida e posicionamento
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-light mr-2 text-xs"></i>
+                                    Comunicação eficiente
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-light mr-2 text-xs"></i>
+                                    Disponibilidade para treinos
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5545988312179" 
+                           class="inline-flex items-center text-primary-light hover:text-primary-dark transition">
+                            <span>Me candidate</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Volante Card -->
+                <div class="player-card bg-gray-800 rounded-xl overflow-hidden border-l-4 border-secondary-light pulse">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-secondary-dark rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-anchor text-xl text-secondary-light"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-4">Volante Defensivo</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Procuramos um volante com marcação forte, que saiba quebrar jogadas e iniciar o jogo ofensivo. 
+                            Capacidade de antecipação e passe preciso são essenciais.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-400 mb-2">Requisitos:</h4>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-secondary-light mr-2 text-xs"></i>
+                                    Marcação intensa
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-secondary-light mr-2 text-xs"></i>
+                                    Visão de jogo
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-secondary-light mr-2 text-xs"></i>
+                                    Resistência física
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5545988312179" 
+                           class="inline-flex items-center text-secondary-light hover:text-secondary-dark transition">
+                            <span>Me candidate</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Structure Section -->
+    <section id="team" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="gradient-text">Estrutura do Time</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Conheça como nosso clube está organizado para atender jogadores de diferentes níveis e objetivos.
+                </p>
+                <div class="w-24 h-1 bg-primary-light mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Time Base -->
+                <div class="bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="bg-primary-dark p-4">
+                        <h3 class="text-xl font-semibold text-center">Time Base</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="bg-gray-600 rounded-full w-20 h-20 flex items-center justify-center">
+                                <i class="fas fa-users text-3xl text-primary-light"></i>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-light mt-1 mr-3"></i>
+                                <span>Focado em diversão e desenvolvimento</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-light mt-1 mr-3"></i>
+                                <span>Rodízio de jogadores para todos participarem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-light mt-1 mr-3"></i>
+                                <span>Ambiente para aprender e melhorar</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary-light mt-1 mr-3"></i>
+                                <span>Possibilidade de evoluir para o time titular</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Time Titular -->
+                <div class="bg-gray-700 rounded-xl overflow-hidden">
+                    <div class="bg-secondary-dark p-4">
+                        <h3 class="text-xl font-semibold text-center">Time Titular</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="bg-gray-600 rounded-full w-20 h-20 flex items-center justify-center">
+                                <i class="fas fa-trophy text-3xl text-secondary-light"></i>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-light mt-1 mr-3"></i>
+                                <span>Focado em competições e campeonatos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-light mt-1 mr-3"></i>
+                                <span>Elenco selecionado por desempenho</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-light mt-1 mr-3"></i>
+                                <span>Treinos táticos e estratégias de jogo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-secondary-light mt-1 mr-3"></i>
+                                <span>Compromisso com horários e desempenho</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-primary-dark to-secondary-dark">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-white">Pronto para vestir a camisa dos Quebradores FC?</h2>
+            <p class="text-gray-200 mb-8 max-w-2xl mx-auto">
+                Se você é um zagueiro ou volante defensivo e quer fazer parte de um time organizado e competitivo, 
+                não perca essa oportunidade!
+            </p>
+            <a href="https://wa.me/5545988312179" 
+               class="inline-flex items-center bg-white text-gray-900 hover:bg-gray-200 px-8 py-4 rounded-lg font-semibold transition shadow-lg">
+                <i class="fab fa-whatsapp mr-3 text-xl"></i>
+                Entre em contato agora
             </a>
         </div>
     </section>
 
-    <!-- Sobre Section -->
-    <section id="sobre" class="py-20 bg-white dark:bg-gray-900 section">
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400 relative inline-block">
-                    <span class="relative">
-                        Sobre Gilberto Gil
-                        <span class="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"></span>
-                    </span>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="gradient-text">Contato</span>
                 </h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Conheça a vida e obra de um dos maiores ícones da música brasileira
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Entre em contato diretamente pelo WhatsApp para mais informações ou para se candidatar.
                 </p>
+                <div class="w-24 h-1 bg-primary-light mx-auto mt-4"></div>
             </div>
             
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/2 relative">
-                    <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografa-ritacarmo4-1200x675.jpeg"
-                         alt="Gilberto Gil"
-                         class="rounded-xl shadow-2xl w-full h-auto transform transition duration-500 hover:scale-[1.02]">
-                    <div class="absolute -bottom-5 -right-5 bg-yellow-500 text-white p-4 rounded-xl shadow-lg hidden lg:block">
-                        <p class="font-bold text-lg">"A música é a arquitetura do ar."</p>
+            <div class="max-w-md mx-auto bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                <div class="p-8">
+                    <div class="flex items-center justify-center mb-8">
+                        <div class="bg-green-600 rounded-full w-16 h-16 flex items-center justify-center">
+                            <i class="fab fa-whatsapp text-3xl text-white"></i>
+                        </div>
                     </div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">WhatsApp Direto</h3>
+                        <p class="text-gray-300">(45) 98831-2179</p>
+                    </div>
+                    <a href="https://wa.me/5545988312179" 
+                       class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 px-4 rounded-lg font-medium transition flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Abrir conversa
+                    </a>
                 </div>
-                
-                <div class="lg:w-1/2">
-                    <p class="text-gray-800 dark:text-gray-300 mb-6 leading-relaxed">
-                        Gilberto Passos Gil Moreira, nascido em Salvador, Bahia, em 26 de junho de 1942, é uma das figuras mais importantes e inovadoras da música popular brasileira. Sua carreira, iniciada nos anos 1960, atravessa décadas com uma produção musical rica e diversificada.
-                    </p>
-                    <p class="text-gray-800 dark:text-gray-300 mb-6 leading-relaxed">
-                        Líder do movimento tropicalista ao lado de Caetano Veloso, Gil revolucionou a MPB ao incorporar elementos del rock, reggae, música africana e eletrônica, criando uma sonoridade única que transcende fronteiras.
-                    </p>
-                    <p class="text-gray-800 dark:text-gray-300 mb-8 leading-relaxed">
-                        Além de sua brilhante carreira musical, Gilberto Gil serviu como Ministro da Cultura do Brasil (2003-2008), implementando políticas culturais inovadoras como os Pontos de Cultura. Sua obra é marcada pela fusão de tradição e vanguarda, sempre com um olhar atento às questões sociais e ambientais.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="bg-yellow-500 text-white p-3 rounded-full mr-3">
-                                    <i class="fas fa-trophy text-lg"></i>
-                                </div>
-                                <h3 class="font-bold text-yellow-600 dark:text-yellow-400 text-lg">Reconhecimento</h3>
-                            </div>
-                            <ul class="space-y-2 text-gray-800 dark:text-gray-300">
-                                <li class="flex items-center">
-                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
-                                    Prêmio Polar de Música (1999)
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
-                                    9 Grammys Latinos
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
-                                    Doutor Honoris Causa por 5 universidades
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="bg-yellow-500 text-white p-3 rounded-full mr-3">
-                                    <i class="fas fa-globe-americas text-lg"></i>
-                                </div>
-                                <h3 class="font-bold text-yellow-600 dark:text-yellow-400 text-lg">Atuação Global</h3>
-                            </div>
-                            <ul class="space-y-2 text-gray-800 dark:text-gray-300">
-                                <li class="flex items-center">
-                                    <i class="fas fa-music text-yellow-500 mr-2"></i>
-                                    Turnês em mais de 50 países
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-users text-yellow-500 mr-2"></i>
-                                    Embaixador da FAO (ONU)
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-leaf text-yellow-500 mr-2"></i>
-                                    Ativista ambiental
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Carreira Section -->
-    <section id="carreira" class="py-20 bg-gray-100 dark:bg-gray-800 section">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400">Linha do Tempo</h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Principais marcos na trajetória artística e política de Gilberto Gil
-                </p>
-            </div>
-            
-            <div class="relative pl-10 timeline max-w-4xl mx-auto">
-                <!-- Timeline Items -->
-                <div class="relative mb-12 timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1963</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Primeiro Disco</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Lançamento do primeiro compacto com "Biquíni de Bolinha Amarelinha" e "Coça, Coça, Lacerdinha".
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12 timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1967</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Tropicália</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Junto com Caetano Veloso, Gal Costa e Tom Zé, lança o movimento tropicalista que revolucionou a MPB.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12 timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1969</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Exílio</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Preso pela ditadura militar e depois exilado em Londres, onde absorve influências do rock e da música mundial.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12 timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1972</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Expresso 2222</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Lança o álbum clássico com canções como "Back in Bahia" e "Oriente", marcando seu retorno ao Brasil.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12 timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">1999</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Prêmio Polar</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Recebe o prestigioso Prêmio Polar, considerado o "Nobel da Música", pelo conjunto de sua obra.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="relative mb-12 timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">2003-2008</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Ministro da Cultura</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            À frente do Ministério da Cultura, implementa políticas inovadoras como os Pontos de Cultura e a reforma da Lei Rouanet.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="relative timeline-item pl-8">
-                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">2020s</span>
-                            <h3 class="font-bold text-lg text-gray-800 dark:text-white">Legado Contínuo</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Continua ativo na música e no ativismo, com turnês internacionais e engajamento em causas ambientais e culturais.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Discografia Section -->
-    <section id="discografia" class="py-20 bg-white dark:bg-gray-900 section">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400">Discografia Essencial</h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Explore os álbuns que marcaram a trajetória musical de Gilberto Gil
-                </p>
-            </div>
-            
-            <!-- Swiper Album Gallery -->
-            <div class="swiper albumSwiper max-w-4xl mx-auto mb-12">
-                <div class="swiper-wrapper pb-12">
-                    <!-- Album 1 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center">
-                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
-                                <img src="https://i.scdn.co/image/ab67616d0000b273e7bd00d1e805d59f1ffef1d0"
-                                     alt="Frevo Rasgado"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Frevo Rasgado (1968)</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">Clássico tropicalista</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Album 2 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center">
-                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
-                                <img src="https://monkeybuzz.com.br/wp-content/uploads/2020/08/expresso-2222.png"
-                                     alt="Expresso 2222"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Expresso 2222 (1972)</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">Pós-exílio criativo</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Album 3 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center">
-                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
-                                <img src="https://gilbertogil.com.br/wp-content/uploads/2020/02/gilberto-gil-11-g-500x500.jpeg"
-                                     alt="Refazenda"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Refazenda (1975)</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">Raízes e inovação</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Album 4 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center">
-                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
-                                <img src="https://monkeybuzz.com.br/wp-content/uploads/2020/08/realce.jpg"
-                                     alt="Realce"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Realce (1979)</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">Fusão com pop e disco</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Album 5 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center">
-                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
-                                <img src="https://monkeybuzz.com.br/wp-content/uploads/2020/08/um-banda-um.png"
-                                     alt="Um Banda Um"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Um Banda Um (1982)</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">Experimentos eletrônicos</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Album 6 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center">
-                            <div class="album-cover w-64 h-64 rounded-xl overflow-hidden mb-4">
-                                <img src="https://s2-g1.glbimg.com/E2XZEbLVhQ157A4OIT72eUn8AjE=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/N/r/4eyuMARMibFiR0T0RQEA/gilquanta.jpg"
-                                     alt="Quanta"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">Quanta (1997)</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">Grammy Latino de Melhor Álbum</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-            
-            <!-- Music Player - Versão Melhorada -->
-            <div class="music-player-container">
-                <div class="music-player rounded-xl p-6 max-w-4xl mx-auto shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900">
-                    <h3 class="font-bold text-2xl mb-6 text-white text-center">Ouça Agora: <span class="text-yellow-400">Refazenda</span></h3>
-                    
-                    <div class="flex flex-col md:flex-row items-center gap-6 mb-8">
-                        <div class="album-art w-40 h-40 rounded-lg overflow-hidden flex-shrink-0">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2020/02/gilberto-gil-11-g-500x500.jpeg"
-                                alt="Capa Refazenda"
-                                class="w-full h-full object-cover">
-                        </div>
-                        
-                        <div class="flex-grow w-full">
-                            <div class="mb-4">
-                                <h4 class="font-bold text-xl text-white">Refazenda</h4>
-                                <p class="text-gray-300">Gilberto Gil (1975)</p>
-                            </div>
-                            
-                            <div class="waveform mb-2">
-                                <div class="waveform-line"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-gray-300 text-sm">1:24</span>
-                                <span class="text-gray-300 text-sm">3:42</span>
-                            </div>
-                            
-                            <div class="progress-container w-full h-1 bg-gray-700 rounded-full mb-4">
-                                <div class="progress h-full bg-yellow-500 rounded-full" style="width: 30%;"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <button class="text-gray-300 hover:text-yellow-400 transition">
-                                    <i class="fas fa-random text-lg"></i>
-                                </button>
-                                
-                                <button class="text-gray-300 hover:text-yellow-400 transition">
-                                    <i class="fas fa-step-backward text-xl"></i>
-                                </button>
-                                
-                                <button class="play-btn bg-yellow-500 hover:bg-yellow-600 text-white rounded-full w-14 h-14 flex items-center justify-center transition">
-                                    <i class="fas fa-play text-2xl"></i>
-                                </button>
-                                
-                                <button class="text-gray-300 hover:text-yellow-400 transition">
-                                    <i class="fas fa-step-forward text-xl"></i>
-                                </button>
-                                
-                                <button class="text-gray-300 hover:text-yellow-400 transition">
-                                    <i class="fas fa-redo text-lg"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <button class="text-gray-300 hover:text-yellow-400 mr-4 transition">
-                                <i class="fas fa-heart text-lg"></i>
-                            </button>
-                            
-                            <button class="text-gray-300 hover:text-yellow-400 mr-4 transition">
-                                <i class="fas fa-list text-lg"></i>
-                            </button>
-                            
-                            <div class="volume-container flex items-center">
-                                <i class="fas fa-volume-down text-gray-300 mr-2"></i>
-                                <input type="range" min="0" max="100" value="80" class="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer">
-                            </div>
-                        </div>
-                        
-                        <div class="equalizer">
-                            <div class="equalizer-bar"></div>
-                            <div class="equalizer-bar"></div>
-                            <div class="equalizer-bar"></div>
-                            <div class="equalizer-bar"></div>
-                            <div class="equalizer-bar"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <button id="toggle-songs" class="w-full py-2 text-gray-300 hover:text-yellow-400 transition flex items-center justify-center">
-                            <span>Ver faixas do álbum</span>
-                            <i class="fas fa-chevron-down ml-2 text-sm"></i>
-                        </button>
-                        
-                        <div class="song-list mt-4">
-                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="text-yellow-500 mr-3">1</span>
-                                    <div>
-                                        <h4 class="font-medium text-white">Refazenda</h4>
-                                        <p class="text-gray-400 text-sm">3:42</p>
-                                    </div>
-                                </div>
-                                <span class="text-gray-400">Tocando agora</span>
-                            </div>
-                            
-                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="text-gray-400 mr-3">2</span>
-                                    <div>
-                                        <h4 class="font-medium text-white">Essa é pra tocar no rádio</h4>
-                                        <p class="text-gray-400 text-sm">4:15</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="text-gray-400 mr-3">3</span>
-                                    <div>
-                                        <h4 class="font-medium text-white">Jeca Total</h4>
-                                        <p class="text-gray-400 text-sm">3:10</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="text-gray-400 mr-3">4</span>
-                                    <div>
-                                        <h4 class="font-medium text-white">Pai e Mãe</h4>
-                                        <p class="text-gray-400 text-sm">2:58</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="song-item p-3 rounded-lg cursor-pointer flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="text-gray-400 mr-3">5</span>
-                                    <div>
-                                        <h4 class="font-medium text-white">Tenho Sede</h4>
-                                        <p class="text-gray-400 text-sm">3:25</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="https://open.spotify.com/artist/7oEkUINVIj1Nr3Wnj8tzqr" target="_blank" class="bg-black text-white px-6 py-3 rounded-full flex items-center justify-center hover:bg-gray-900 transition">
-                            <i class="fab fa-spotify mr-2 text-xl"></i> Ouvir no Spotify
-                        </a>
-                        
-                        <a href="https://music.apple.com/br/artist/gilberto-gil/106194" target="_blank" class="bg-black text-white px-6 py-3 rounded-full flex items-center justify-center hover:bg-gray-900 transition">
-                            <i class="fab fa-apple mr-2 text-xl"></i> Ouvir no Apple Music
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeria Section -->
-    <section id="galeria" class="py-20 bg-gray-100 dark:bg-gray-800 section">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-yellow-400">Galeria</h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Momentos marcantes da carreira de Gilberto Gil em imagens
-                </p>
-            </div>
-            
-            <!-- Swiper Gallery -->
-            <div class="swiper gallerySwiper max-w-6xl mx-auto">
-                <div class="swiper-wrapper pb-12">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2024/03/gilbertogil.com.br-bw-20240322-lollapalooza-gilbertogil-1445-1-1-960x1200.jpg"
-                                 alt="Gilberto Gil no Lollapalooza"
-                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                                <div>
-                                    <h3 class="font-bold text-xl text-white mb-1">Lollapalooza 2024</h3>
-                                    <p class="text-gray-200">Aos 81 anos, Gil continua a encantar plateias em grandes festivais</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2022/04/gilbertogil.com.br-abl-previa12-800x1200.jpg"
-                                 alt="Gilberto Gil na ABL"
-                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                                <div>
-                                    <h3 class="font-bold text-xl text-white mb-1">Academia Brasileira de Letras</h3>
-                                    <p class="text-gray-200">Eleito para a cadeira 20 da ABL em 2022</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografo-niclasweber-1200x800.jpg"
-                                 alt="Gilberto Gil em show"
-                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                                <div>
-                                    <h3 class="font-bold text-xl text-white mb-1">Show Internacional</h3>
-                                    <p class="text-gray-200">Levando a música brasileira para o mundo</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-foto-tatiana-valenca-fotografapelaeuropa33-1200x800.jpg"
-                                 alt="Gilberto Gil em estúdio"
-                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                                <div>
-                                    <h3 class="font-bold text-xl text-white mb-1">No Estúdio</h3>
-                                    <p class="text-gray-200">Processo criativo de gravação</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide">
-                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-fotografo-irakerly-12-1200x960.jpg"
-                                 alt="Gilberto Gil em entrevista"
-                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                                <div>
-                                    <h3 class="font-bold text-xl text-white mb-1">Entrevista</h3>
-                                    <p class="text-gray-200">Compartilhando suas ideias e visões</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 6 -->
-                    <div class="swiper-slide">
-                        <div class="relative group overflow-hidden rounded-xl shadow-lg">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
-                                 alt="Gilberto Gil retrato"
-                                 class="w-full h-96 object-cover transform transition duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/30 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                                <div>
-                                    <h3 class="font-bold text-xl text-white mb-1">Retrato</h3>
-                                    <p class="text-gray-200">O artista em seu elemento</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next text-yellow-500"></div>
-                <div class="swiper-button-prev text-yellow-500"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contato Section -->
-    <section id="contato" class="py-20 bg-yellow-600 dark:bg-yellow-800 section">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 text-white">Contato</h2>
-                <p class="text-white/90 max-w-2xl mx-auto">
-                    Entre em contato para shows, projetos culturais ou parcerias
-                </p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition">
-                    <h3 class="font-bold text-2xl mb-6 text-gray-800 dark:text-white">Envie uma mensagem</h3>
-                    <form class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-gray-700 dark:text-gray-300 mb-1">Nome</label>
-                            <input type="text" id="name"
-                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-1">E-mail</label>
-                            <input type="email" id="email"
-                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-gray-700 dark:text-gray-300 mb-1">Assunto</label>
-                            <select id="subject"
-                                     class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
-                                <option>Show/Evento</option>
-                                <option>Projeto Cultural</option>
-                                <option>Parceria</option>
-                                <option>Outro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 dark:text-gray-300 mb-1">Mensagem</label>
-                            <textarea id="message" rows="4"
-                                       class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white"></textarea>
-                        </div>
-                        <button type="submit"
-                                 class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-lg transition">
-                            Enviar Mensagem
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="space-y-6">
-                    <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-map-marker-alt text-xl text-yellow-600 dark:text-yellow-400"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800 dark:text-white">Escritório</h3>
-                                <p class="text-gray-600 dark:text-gray-300">Salvador, Bahia - Brasil</p>
-                            </div>
-                        </div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15551.99128822304!2d-38.5157343!3d-12.9721126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161b14e87f4aa1%3A0x8a9b3b7a1a1b3b1a!2sPelourinho%2C%20Salvador%20-%20BA!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"
-                                 class="w-full h-48 rounded-lg border-0"
-                                 allowfullscreen=""
-                                 loading="lazy"
-                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <a href="https://wa.me/5511999999999" target="_blank"
-                           class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-6 text-center hover:shadow-xl transition transform hover:-translate-y-1">
-                            <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fab fa-whatsapp text-xl text-yellow-600 dark:text-yellow-400"></i>
-                            </div>
-                            <h3 class="font-bold text-lg mb-1">WhatsApp</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">+55 11 99999-9999</p>
-                        </a>
-                        
-                        <a href="https://instagram.com/gilbertogil" target="_blank"
-                           class="bg-white dark:bg-gray-900 text-yellow-600 dark:text-yellow-400 rounded-xl p-6 text-center hover:shadow-xl transition transform hover:-translate-y-1">
-                            <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fab fa-instagram text-xl text-yellow-600 dark:text-yellow-400"></i>
-                            </div>
-                            <h3 class="font-bold text-lg mb-1">Instagram</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm">@gilbertogil</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-16 bg-white dark:bg-gray-900 rounded-xl p-8 max-w-4xl mx-auto shadow-lg">
-                <h3 class="font-bold text-2xl mb-4 text-center text-gray-800 dark:text-white">Newsletter</h3>
-                <p class="text-center mb-6 text-gray-600 dark:text-gray-300">
-                    Receba novidades sobre shows, lançamentos e projetos culturais
-                </p>
-                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input type="email" placeholder="Seu melhor e-mail"
-                           class="flex-grow px-5 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:text-white">
-                    <button type="submit"
-                            class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold px-6 py-3 rounded-lg transition">
-                        Assinar
-                    </button>
-                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-12 section">
+    <footer class="bg-gray-900 border-t border-gray-800 py-8">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row justify-between items-center mb-8 gap-8">
-                <div class="text-center lg:text-left">
-                    <div class="flex items-center justify-center lg:justify-start mb-4">
-                        <div class="relative mr-3">
-                            <img src="https://gilbertogil.com.br/wp-content/uploads/2021/11/gilbertogil.com.br-gilberto-gil-1.jpg"
-                                 alt="Logo Gilberto Gil"
-                                 class="h-12 w-12 rounded-full border-2 border-yellow-500 object-cover">
-                            <span class="absolute -bottom-1 -right-1 bg-yellow-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">GG</span>
-                        </div>
-                        <h2 class="text-2xl font-bold">Gilberto Gil</h2>
-                    </div>
-                    <p class="text-gray-400 max-w-md">
-                        Poeta da música brasileira, revolucionário cultural e voz atemporal de nossa identidade.
-                    </p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <img src="https://i.postimg.cc/mDjFBpYR/Quebradores-Principal-Sem-Fundo.png" alt="Quebradores FC Logo" class="h-10">
+                    <span class="text-lg font-bold gradient-text">Quebradores FC</span>
                 </div>
-                
-                <div class="flex flex-col sm:flex-row gap-8 text-center sm:text-left">
-                    <div>
-                        <h3 class="font-bold text-lg mb-3 text-yellow-400">Navegação</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#sobre" class="text-gray-400 hover:text-white transition">Sobre</a></li>
-                            <li><a href="#carreira" class="text-gray-400 hover:text-white transition">Carreira</a></li>
-                            <li><a href="#discografia" class="text-gray-400 hover:text-white transition">Discografia</a></li>
-                            <li><a href="#galeria" class="text-gray-400 hover:text-white transition">Galeria</a></li>
-                            <li><a href="#contato" class="text-gray-400 hover:text-white transition">Contato</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="font-bold text-lg mb-3 text-yellow-400">Redes Sociais</h3>
-                        <div class="flex justify-center sm:justify-start space-x-4">
-                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
-                                <i class="fab fa-spotify"></i>
-                            </a>
-                            <a href="#" class="social-icon text-gray-400 hover:text-yellow-500 transition">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-primary-light transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary-light transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary-light transition">
+                        <i class="fab fa-discord text-xl"></i>
+                    </a>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 dark:border-gray-800 pt-8 text-center">
-                <p class="text-gray-400">
-                    © 2024 Projeto Escolar sobre Gilberto Gil. Todos os direitos reservados.
-                </p>
-                <p class="mt-2 text-gray-500 text-sm">
-                    Desenvolvido com ❤️ por alunos para fins educacionais.
-                </p>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>© 2023 Quebradores FC. Todos os direitos reservados.</p>
+                <p class="mt-2">EAFC 25 - Time competitivo NV10</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swiper for Albums
-        const albumSwiper = new Swiper('.albumSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            }
-        });
-        
-        // Initialize Swiper for Gallery
-        const gallerySwiper = new Swiper('.gallerySwiper', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            }
-        });
-        
-        // Dark mode toggle
-        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            const icon = this.querySelector('i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-        
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.body.classList.add('dark-mode');
-            document.getElementById('dark-mode-toggle').querySelector('i').classList.remove('fa-moon');
-            document.getElementById('dark-mode-toggle').querySelector('i').classList.add('fa-sun');
-        }
-        
         // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
-            this.querySelector('i').classList.toggle('fa-bars');
-            this.querySelector('i').classList.toggle('fa-times');
         });
         
         // Smooth scrolling for anchor links
@@ -1253,13 +464,14 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                mobileMenu.classList.add('hidden');
-                document.getElementById('mobile-menu-button').querySelector('i').classList.remove('fa-times');
-                document.getElementById('mobile-menu-button').querySelector('i').classList.add('fa-bars');
-                
                 if (targetElement) {
+                    // Hide mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    // Scroll to target
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -1268,149 +480,14 @@
             });
         });
         
-        // Intersection Observer for section animations
-        const sections = document.querySelectorAll('.section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Music player simulation - Versão Melhorada
-        const playButton = document.querySelector('.play-btn');
-        const progressBar = document.querySelector('.progress');
-        const progressContainer = document.querySelector('.progress-container');
-        const songList = document.querySelector('.song-list');
-        const toggleSongsButton = document.getElementById('toggle-songs');
-        const songItems = document.querySelectorAll('.song-item');
-        const equalizer = document.querySelector('.equalizer');
-        let isPlaying = false;
-        let progress = 0;
-        let progressInterval;
-        let currentSong = 0;
-        
-        // Toggle play/pause
-        playButton.addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            isPlaying = !isPlaying;
-            
-            if (isPlaying) {
-                icon.classList.remove('fa-play');
-                icon.classList.add('fa-pause');
-                
-                // Animar equalizador
-                equalizer.style.display = 'flex';
-                
-                progressInterval = setInterval(() => {
-                    progress += 0.5;
-                    if (progress > 100) {
-                        progress = 0;
-                        playNextSong();
-                    }
-                    progressBar.style.width = `${progress}%`;
-                }, 500);
+        // Add shadow on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
             } else {
-                icon.classList.remove('fa-pause');
-                icon.classList.add('fa-play');
-                clearInterval(progressInterval);
-                
-                // Parar equalizador
-                equalizer.style.display = 'none';
+                header.classList.remove('shadow-lg');
             }
-        });
-        
-        // Click na barra de progresso
-        progressContainer.addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const pos = (e.clientX - rect.left) / rect.width;
-            progress = pos * 100;
-            progressBar.style.width = `${progress}%`;
-        });
-        
-        // Toggle lista de músicas
-        toggleSongsButton.addEventListener('click', function() {
-            songList.classList.toggle('open');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fa-chevron-down');
-            icon.classList.toggle('fa-chevron-up');
-        });
-        
-        // Selecionar música da lista
-        songItems.forEach((item, index) => {
-            item.addEventListener('click', function() {
-                // Remover classe active de todas as músicas
-                songItems.forEach(song => song.classList.remove('active'));
-                
-                // Adicionar classe active à música selecionada
-                this.classList.add('active');
-                
-                // Atualizar música atual
-                currentSong = index;
-                
-                // Resetar progresso
-                progress = 0;
-                progressBar.style.width = '0%';
-                
-                // Se estiver tocando, continuar tocando
-                if (isPlaying) {
-                    const icon = playButton.querySelector('i');
-                    icon.classList.remove('fa-play');
-                    icon.classList.add('fa-pause');
-                    
-                    // Atualizar texto "Tocando agora"
-                    songItems.forEach(song => {
-                        const nowPlayingText = song.querySelector('span:last-child');
-                        if (nowPlayingText) nowPlayingText.textContent = '';
-                    });
-                    
-                    const nowPlayingText = this.querySelector('span:last-child');
-                    if (nowPlayingText) nowPlayingText.textContent = 'Tocando agora';
-                }
-            });
-        });
-        
-        // Função para tocar próxima música
-        function playNextSong() {
-            currentSong = (currentSong + 1) % songItems.length;
-            const nextSong = songItems[currentSong];
-            
-            // Remover classe active de todas as músicas
-            songItems.forEach(song => song.classList.remove('active'));
-            
-            // Adicionar classe active à próxima música
-            nextSong.classList.add('active');
-            
-            // Resetar progresso
-            progress = 0;
-            progressBar.style.width = '0%';
-            
-            // Atualizar texto "Tocando agora"
-            songItems.forEach(song => {
-                const nowPlayingText = song.querySelector('span:last-child');
-                if (nowPlayingText) nowPlayingText.textContent = '';
-            });
-            
-            const nowPlayingText = nextSong.querySelector('span:last-child');
-            if (nowPlayingText) nowPlayingText.textContent = 'Tocando agora';
-            
-            // Simular clique na próxima música para disparar eventos
-            nextSong.click();
-        }
-        
-        // Volume control
-        const volumeSlider = document.querySelector('.volume-container input');
-        volumeSlider.addEventListener('input', function() {
-            // Simular ajuste de volume
-            console.log('Volume ajustado para:', this.value);
         });
     </script>
 </body>
